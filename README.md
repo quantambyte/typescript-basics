@@ -70,7 +70,7 @@ It will ask you couple of Question
 
 - How would you like to use ESLint?
 
-  > You can select **To check syntax, find problems and enforce code styles **(or any other)
+  > You can select To check syntax, find problems and enforce code styles (or any other)
 
 - What type of modules does your project use?
 
@@ -145,3 +145,137 @@ npx tsc ./src/test.ts
 ```
 
 It will create a test.js file
+
+# Useful Resources For Learning TypeScript
+
+- TypeScript for JavaScript Programmers
+
+> Learn TypeScript in 5 Minutes[TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+
+- The TypeScript Handbook [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+# Data Types
+
+## Basic Data Types
+
+Some Basics Data Types are
+
+- number
+- string
+- boolean
+- null
+- undefined
+- any
+- void
+
+```
+let a: number;
+let b: boolean;
+let c: string;
+```
+
+## Custom Data Types
+
+### type
+
+You can define Custom Data Type by using keyword **type**
+For Example:
+
+```
+type User = {
+  name: string;
+  fatherName: string;
+  age: number;
+  isMale: boolean;
+}
+```
+
+And You can assign it to like that
+
+```
+const user: User = {
+  name: 'Ali',
+  surName: 'IDK',
+  age: 30,
+  isAdmin: false,
+};
+```
+
+> If you type some other type like for age you give a string it won't let you compile it and throw an error.
+> Also if some property is missing it will throw an error as well.
+
+### interface
+
+Suppose we came across a situation where we want to have same properties as other types but some additional we can simply extend it
+For Example:
+
+```
+interface UserWithPermissions extends User{
+  permissions: string[]
+}
+```
+
+and
+
+```
+const user2: UserWithPermissions = {
+  name: 'Ali',
+  surName: 'IDK',
+  age: 30,
+  isAdmin: false,
+  permissions: ['manager', 'instructor'],
+};
+```
+
+### Difference b/w Types and Interface?
+
+- One major difference between type aliases vs interfaces are that interfaces are open and type aliases are closed.
+- This means you can extend an interface by declaring it a second time.
+- They both support extending other interfaces and types. Type aliases do this via intersection types, while interfaces have a keyword.
+
+Difference [Types vs Interface](https://www.typescriptlang.org/play#example/types-vs-interfaces)
+Another Resource [Types vs Interface](https://stackoverflow.com/questions/37233735/interfaces-vs-types-in-typescript/52682220#52682220)
+
+## Optional Parameter
+
+You can create an optional parameter by simply applying _?_ at the end
+
+> For Example,
+
+```
+interface OptionalUser {
+  name: string;
+  age: number;
+  permissions?: string[];
+}
+```
+
+# Functions
+
+You can define a function like this
+
+```
+const sum = (a: number, b: number): number => a + b;
+```
+
+where a: **number** defines the type of the parameter a
+and (a: number, b: number): **number** tells us about the return type of the function
+
+> If we have more than one function with same types like
+
+```
+const mul = (a: number, b: number): number => a * b;
+```
+
+We can define a type for function as follow
+
+```
+type AirthmateticOperation = (a: number, b: number) => number;
+```
+
+And now can apply to any function without worrying about explicitly typing types
+For Example:
+
+```
+const sum2: AirthmateticOperation = (a, b) => a + b;
+```
